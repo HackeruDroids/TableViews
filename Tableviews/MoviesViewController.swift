@@ -47,17 +47,40 @@ extension MoviesViewController: UITableViewDataSource{
         let movie = movies[indexPath.row]
         //0)how does our cell looks like?
         //1)init a cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell")! as! MovieCell
         
         //2) configure the data - data binding
+        cell.poster.image = movie.image
+        cell.movieTitle.text = movie.title
+        cell.movieDate.text = movie.date.description
+        /*
         cell.textLabel?.text = movie.title
         cell.imageView?.image = movie.image
         cell.detailTextLabel?.text = movie.date.description
+        */
         
         return cell
     }
+  
+
 }
 
 extension MoviesViewController: UITableViewDelegate{
+    @objc(tableView:heightForRowAtIndexPath:) func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = movies[indexPath.row]
+        //perform a segue from code!
+        performSegue(withIdentifier: "masterToDetail", sender: movie)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let movie = sender as? Movie,
+            let dest = segue.destination as? MovieDetailsViewController{
+            
+            dest.movie = movie
+        }
+    }
 }
