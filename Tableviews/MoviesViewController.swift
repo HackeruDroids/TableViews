@@ -52,22 +52,24 @@ class MoviesViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(doStuff))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMovie))
         
         //pointer to a method
         
     }
     
-    func doStuff(){
+    func addMovie(){
         //1) add the item to the datasource
         //2) notify the tableview about the changes.
         
         print("Selector Action performed")
         
         //move to the datasource
-        let movie = Movie(title: "MyNew Movie", url: "", image: #imageLiteral(resourceName: "potc"), imageLink: "", date: Date(), genre: "")
+
+        
+        let indexPath = dataSource.addNewMovie()
         //add to the datasource
-    
+        tableView.insertRows(at: [indexPath], with: .left)
         
     }
 
@@ -110,7 +112,7 @@ class MoviesViewController: UITableViewController {
         return true
     }
  
-
+    
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -124,21 +126,37 @@ class MoviesViewController: UITableViewController {
         }    
     }
  
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
 
-    /*
+        if !editing{
+            print("Done" )
+            
+            for m in movies{
+                print(m.title)
+            }
+        }
+    }
+   
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        //datasource move the item
+        //delete
+        let movie = dataSource.delete(at: fromIndexPath)
+        
+        
+        
+        dataSource.insert(movie, at: to)
     }
-    */
+   
 
-    /*
+   
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    */
+    
 
     //static let mySegueName = "toEdit"
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

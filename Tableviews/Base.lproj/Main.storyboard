@@ -65,6 +65,7 @@
                     <navigationItem key="navigationItem" title="Movies" id="jTz-2O-S3Q"/>
                     <connections>
                         <segue destination="low-i8-r77" kind="show" identifier="toEdit" id="Ju9-Wv-fFO"/>
+                        <segue destination="low-i8-r77" kind="presentation" id="sRA-20-vad"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CyJ-TJ-ngU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -122,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boC-XS-RD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="935" y="-201"/>
+            <point key="canvasLocation" x="1209" y="-408"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nic-It-anv">
@@ -148,4 +149,7 @@
     <resources>
         <image name="hiddenfigures" width="133" height="200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sRA-20-vad"/>
+    </inferredMetricsTieBreakers>
 </document>

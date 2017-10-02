@@ -11,15 +11,30 @@ import UIKit
 class MovieDataSource {
     var movies: [Movie] = []
     
-    func delete(at indexPath:IndexPath){
-        movies.remove(at: indexPath.row)
+    
+    func addNewMovie()->IndexPath{
+        let movie = Movie(title: "MyNew Movie", url: "", image: #imageLiteral(resourceName: "potc"), imageLink: "", date: Date(), genre: "")
+        
+        
+        let idx = 0 //movies.count //rand or category related
+        let indexPath = IndexPath(row: idx, section: 0)
+        movies.insert(movie, at: idx)
+        
+        return indexPath
+    }
+    func delete(at indexPath:IndexPath)->Movie{
+        return movies.remove(at: indexPath.row)
+    }
+    
+    func insert(_ movie: Movie, at indexPath:IndexPath){
+        movies.insert(movie, at: indexPath.row)
     }
     
     init(){
         let f = DateFormatter()
         f.dateFormat = "yyyy-MM-dd"
         
-        for _ in 1...1000{
+        for _ in 1...1{
             
             movies.append(
                 Movie(title: "King Arthur",
