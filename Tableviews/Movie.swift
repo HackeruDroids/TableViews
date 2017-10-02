@@ -9,7 +9,7 @@
 import UIKit
 
 class Movie : CustomStringConvertible{
-    let title:String
+    var title:String
     let url:String
     let image:UIImage //the real image
     let imageLink:String //link to download the image
