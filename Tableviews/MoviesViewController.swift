@@ -50,7 +50,25 @@ class MoviesViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(doStuff))
+        
+        //pointer to a method
+        
+    }
+    
+    func doStuff(){
+        //1) add the item to the datasource
+        //2) notify the tableview about the changes.
+        
+        print("Selector Action performed")
+        
+        //move to the datasource
+        let movie = Movie(title: "MyNew Movie", url: "", image: #imageLiteral(resourceName: "potc"), imageLink: "", date: Date(), genre: "")
+        //add to the datasource
+    
+        
     }
 
     // MARK: - Table view data source
@@ -85,25 +103,27 @@ class MoviesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-    /*
+  
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+ 
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            dataSource.delete(at: indexPath)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+ 
 
     /*
     // Override to support rearranging the table view.

@@ -12,6 +12,7 @@ class MovieDetailsViewController: UIViewController {
     
     @IBAction func done(_ sender: UIBarButtonItem) {
         movie.title = self.titleText.text ?? ""
+      
     }
     
     @IBOutlet weak var posterImage: UIImageView!

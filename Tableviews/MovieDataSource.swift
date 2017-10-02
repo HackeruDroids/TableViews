@@ -11,6 +11,10 @@ import UIKit
 class MovieDataSource {
     var movies: [Movie] = []
     
+    func delete(at indexPath:IndexPath){
+        movies.remove(at: indexPath.row)
+    }
+    
     init(){
         let f = DateFormatter()
         f.dateFormat = "yyyy-MM-dd"
